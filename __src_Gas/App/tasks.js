@@ -3,6 +3,7 @@
 import { getSheet } from '../../../GAS | Library/v02/gas/getSheet';
 import { getIdFromUrl } from '../../../GAS | Library/v02/gas/getIdFromUrl';
 import { randomIntegersArray } from '../../../GAS | Library/v02/arr/randomIntegersArray';
+import { randomInteger } from '../../../GAS | Library/v02/num/randomInteger';
 
 import {
 	EXT_SHEET_URL,
@@ -43,77 +44,62 @@ const getProperSheet = (geo, sheetCode) => {
 const getNumbFromStr = str => Number(/[0-9]+/.exec(str)[0]);
 
 /**
- * Usuwa stare dane z arkuszy powstałych jako kopiowanie z innych, już
- * istniejących plików. Dodatkowo modyfikuje background i tekst nagłowka
- */
-
-const deleteOldDate = () =>
-	Object.values(WHERE_TO_PRINT.geo)
-		.map(link => getIdFromUrl(link))
-		.forEach(id => {
-			SpreadsheetApp.openById(id)
-				.getSheets()
-				.filter(sheet => sheet.getName().includes('T:'))
-				.forEach(sheet => {
-					sheet
-						.getRange('A3:E')
-						.clearContent()
-						.getSheet()
-						.getRange('A1:BJ2')
-						.setBackground('#34a853');
-
-					const tittle = sheet.getRange('AT1');
-					const old = tittle.getValue();
-					tittle.setValue(old.replace('modyfikacja', 'odczyt'));
-				});
-		});
-
-/**
- * Pobiera określoną liczbę wpisów ze wskazanego arkusza
+ * Pobiera losowy zakres zawierający wskazaną liczbę wpisów wierszy
+ * ze wskazanego arkusza
  * @param {string} geo Skąd ma wziąć dane - 'ext', 'loc', 'hub'
- * @param {number} quant Liczba wierszy
+ * @param {number} quant Liczba wierszy w zakesie
  * @param {boolean} [sort] Czy sortować indeksy
  * @return {(sheetCode: string) => function} sheetCode - Zdefiniowany kod zadania np. l100
  */
-const getEntries = (geo, quant, sort = false) => sheetCode => () => {
+const getRange = (geo, quant) => sheetCode => () => {
 	const sheet = getProperSheet(geo, sheetCode);
 
-	const maxIdx = getNumbFromStr(sheetCode) - 1;
-	const idxs = randomIntegersArray(quant, 0, maxIdx, true, false, sort);
+	const maxEndRow = getNumbFromStr(sheetCode); // maksymalny zakres dostępny w arkuszu
+	const maxStartRow = maxEndRow - quant + 1; // maksymalny start zakresu
 
-	idxs.forEach(idx => {
-		const range = `A${idx + 1}:O${idx + 1}`;
-		const vals = sheet.getRange(range).getValues();
-		console.log(
-			`Geo: ${geo}. Quant: ${quant}. SheetCode: ${sheetCode}. Range: ${range} | First cell: ${vals[0][0]} `
-		);
-	});
+	// const maxIdx = getNumbFromStr(sheetCode) - 1;
+	// const idxs = randomIntegersArray(quant, 0, maxIdx, true, false, sort);
+
+	const rangeStart = randomInteger(1, maxStartRow);
+	const range = `A${rangeStart}:O${rangeStart + quant - 1}`;
+	const vals = sheet.getRange(range).getValues();
+
+	console.log(
+		`Geo: ${geo}. Quant: ${quant}. SheetCode: ${sheetCode}. Range: ${range} | First cell: ${vals[0][0]} `
+	);
+	// idxs.forEach(idx => {
+	// 	const range = `A${idx + 1}:O${idx + 1}`;
+	// 	const vals = sheet.getRange(range).getValues();
+	// 	console.log(
+	// 		`Geo: ${geo}. Quant: ${quant}. SheetCode: ${sheetCode}. Range: ${range} | First cell: ${vals[0][0]} `
+	// 	);
+	// });
 };
 
 const tasks = {
 	/* External */
-	ext1: getEntries('ext', 1),
-	ext5: getEntries('ext', 5),
-	ext10: getEntries('ext', 10),
-	ext25: getEntries('ext', 25),
-	ext50: getEntries('ext', 50),
-	ext100: getEntries('ext', 100),
+	ext1: getRange('ext', 1),
+	ext5: getRange('ext', 5),
+	ext10: getRange('ext', 10),
+	ext25: getRange('ext', 25),
+	ext50: getRange('ext', 50),
+	ext100: getRange('ext', 100),
 
 	/* Local */
-	loc1: getEntries('loc', 1),
-	loc5: getEntries('loc', 5),
-	loc10: getEntries('loc', 10),
-	loc25: getEntries('loc', 25),
-	loc50: getEntries('loc', 50),
-	loc100: getEntries('loc', 100),
+	loc1: getRange('loc', 1),
+	loc5: getRange('loc', 5),
+	loc10: getRange('loc', 10),
+	loc25: getRange('loc', 25),
+	loc50: getRange('loc', 50),
+	loc100: getRange('loc', 100),
 
 	/* Hub */
-	hub1: getEntries('hub', 1),
-	hub5: getEntries('hub', 5),
-	hub10: getEntries('hub', 10),
-	hub25: getEntries('hub', 25),
-	hub50: getEntries('hub', 50),
-	hub100: getEntries('hub', 100),
+	hub1: getRange('hub', 1),
+	hub5: getRange('hub', 5),
+	hub10: getRange('hub', 10),
+	hub25: getRange('hub', 25),
+	hub50: getRange('hub', 50),
+	hub100: getRange('hub', 100),
 };
 
-export { tasks, deleteOldDate };
+export { tasks };

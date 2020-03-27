@@ -59,26 +59,26 @@ const SHORT_DSC = {
  */
 
 const LONG_DESC = {
-	ext1: 'EbE 1: 1 row - Ext',
-	ext5: 'EbE 2: 5 rows - Ext',
-	ext10: 'EbE 3: 10 rows - Ext',
-	ext25: 'EbE 4: 25 rows - Ext',
-	ext50: 'EbE 5: 50 rows - Ext',
-	ext100: 'EbE 6: 100 rows - Ext',
+	ext1: 'bRange 1: 1 row - Ext',
+	ext5: 'bRange 2: 5 rows - Ext',
+	ext10: 'bRange 3: 10 rows - Ext',
+	ext25: 'bRange 4: 25 rows - Ext',
+	ext50: 'bRange 5: 50 rows - Ext',
+	ext100: 'bRange 6: 100 rows - Ext',
 
-	loc1: 'EbE 1: 1 row - Loc',
-	loc5: 'EbE 2: 5 rows - Loc',
-	loc10: 'EbE 3: 10 rows - Loc',
-	loc25: 'EbE 4: 25 rows - Loc',
-	loc50: 'EbE 5: 50 rows - Loc',
-	loc100: 'EbE 6: 100 rows - Loc',
+	loc1: 'bRange 1: 1 row - Loc',
+	loc5: 'bRange 2: 5 rows - Loc',
+	loc10: 'bRange 3: 10 rows - Loc',
+	loc25: 'bRange 4: 25 rows - Loc',
+	loc50: 'bRange 5: 50 rows - Loc',
+	loc100: 'bRange 6: 100 rows - Loc',
 
-	hub1: 'EbE 1: 1 row - Hub',
-	hub5: 'EbE 2: 5 rows - Hub',
-	hub10: 'EbE 3: 10 rows - Hub',
-	hub25: 'EbE 4: 25 rows - Hub',
-	hub50: 'EbE 5: 50 rows - Hub',
-	hub100: 'EbE 6: 100 rows - Hub',
+	hub1: 'bRange 1: 1 row - Hub',
+	hub5: 'bRange 2: 5 rows - Hub',
+	hub10: 'bRange 3: 10 rows - Hub',
+	hub25: 'bRange 4: 25 rows - Hub',
+	hub50: 'bRange 5: 50 rows - Hub',
+	hub100: 'bRange 6: 100 rows - Hub',
 };
 
 /**

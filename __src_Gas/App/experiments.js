@@ -43,7 +43,7 @@ const randomFnHub = [
 	['hub100', tasks.hub100],
 ];
 
-const runRandomSingle = geoSet => () => {
+const runRandom = geoSet => () => {
 	const [code] = randomFromArray(randomCode, 1);
 	const [fn] = randomFromArray(geoSet, 1);
 	// console.log(`Arkusz: ${code} | Liczba modyfikacji: ${fn[0]}`);
@@ -51,8 +51,8 @@ const runRandomSingle = geoSet => () => {
 	single(code, fn);
 };
 
-const randomExternal = runRandomSingle(randomFnExt);
-const randomLocal = runRandomSingle(randomFnLoc);
-const randomHub = runRandomSingle(randomFnHub);
+const randomExternal = runRandom(randomFnExt);
+const randomLocal = runRandom(randomFnLoc);
+const randomHub = runRandom(randomFnHub);
 
 export { randomExternal, randomLocal, randomHub };

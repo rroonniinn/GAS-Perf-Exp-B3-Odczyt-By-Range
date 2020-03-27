@@ -6,7 +6,7 @@ import {
 	createFilesForExt,
 	createWhereToPrintFiles,
 } from './prepareStructure';
-import { deleteOldDate } from './tasks';
+
 import { startTimeTrigger, cancelTimeTriggers } from './triggers';
 
 // Funkcja do trigerów co minutę
@@ -28,7 +28,7 @@ global.menu = {
 	createFolderStructure,
 	createFilesForExt,
 	createWhereToPrintFiles,
-	deleteOldDate,
+
 	triggers: {
 		ext: () => startTimeTrigger('randomExternal'),
 		loc: () => startTimeTrigger('randomLocal'),
@@ -40,14 +40,10 @@ global.menu = {
 const menu = () => {
 	const ui = SpreadsheetApp.getUi();
 	ui.createMenu('ICON')
-		// .addItem('randomLocal','randomLocal')
-		// .addItem('randomExternal','randomExternal')
-		// .addItem('randomHub','randomHub')
+		// .addItem('Test : randomLocal', 'randomLocal')
+		// .addItem('Test : randomExternal', 'randomExternal')
+		// .addItem('Test : randomHub', 'randomHub')
 		// .addSeparator()
-		// .addItem(
-		// 	'Usuń stare dane',
-		// 	'menu.deleteOldDate'
-		// )
 		.addItem(
 			'Uruchom Trigger dla Random External',
 			'menu.triggers.ext'
@@ -57,10 +53,10 @@ const menu = () => {
 		.addSeparator()
 		.addItem('Zatrzymaj triggery', 'menu.triggers.stop')
 		.addSeparator()
-		.addItem('createFolderStructure', 'menu.createFolderStructure')
-		.addItem('createFilesForExt', 'menu.createFilesForExt')
-		.addItem('createWhereToPrintFiles', 'menu.createWhereToPrintFiles')
-		.addSeparator()
+		// .addItem('createFolderStructure', 'menu.createFolderStructure')
+		// .addItem('createFilesForExt', 'menu.createFilesForExt')
+		// .addItem('createWhereToPrintFiles', 'menu.createWhereToPrintFiles')
+		// .addSeparator()
 		.addItem('Update menu', 'onOpen')
 		.addToUi();
 };
