@@ -2,7 +2,6 @@
 
 import { getSheet } from '../../../GAS | Library/v02/gas/getSheet';
 import { getIdFromUrl } from '../../../GAS | Library/v02/gas/getIdFromUrl';
-import { randomIntegersArray } from '../../../GAS | Library/v02/arr/randomIntegersArray';
 import { randomInteger } from '../../../GAS | Library/v02/num/randomInteger';
 
 import {
@@ -48,7 +47,6 @@ const getNumbFromStr = str => Number(/[0-9]+/.exec(str)[0]);
  * ze wskazanego arkusza
  * @param {string} geo Skąd ma wziąć dane - 'ext', 'loc', 'hub'
  * @param {number} quant Liczba wierszy w zakesie
- * @param {boolean} [sort] Czy sortować indeksy
  * @return {(sheetCode: string) => function} sheetCode - Zdefiniowany kod zadania np. l100
  */
 const getRange = (geo, quant) => sheetCode => () => {
@@ -57,9 +55,6 @@ const getRange = (geo, quant) => sheetCode => () => {
 	const maxEndRow = getNumbFromStr(sheetCode); // maksymalny zakres dostępny w arkuszu
 	const maxStartRow = maxEndRow - quant + 1; // maksymalny start zakresu
 
-	// const maxIdx = getNumbFromStr(sheetCode) - 1;
-	// const idxs = randomIntegersArray(quant, 0, maxIdx, true, false, sort);
-
 	const rangeStart = randomInteger(1, maxStartRow);
 	const range = `A${rangeStart}:O${rangeStart + quant - 1}`;
 	const vals = sheet.getRange(range).getValues();
@@ -67,13 +62,6 @@ const getRange = (geo, quant) => sheetCode => () => {
 	console.log(
 		`Geo: ${geo}. Quant: ${quant}. SheetCode: ${sheetCode}. Range: ${range} | First cell: ${vals[0][0]} `
 	);
-	// idxs.forEach(idx => {
-	// 	const range = `A${idx + 1}:O${idx + 1}`;
-	// 	const vals = sheet.getRange(range).getValues();
-	// 	console.log(
-	// 		`Geo: ${geo}. Quant: ${quant}. SheetCode: ${sheetCode}. Range: ${range} | First cell: ${vals[0][0]} `
-	// 	);
-	// });
 };
 
 const tasks = {
