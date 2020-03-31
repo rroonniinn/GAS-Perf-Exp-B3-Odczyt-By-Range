@@ -4,12 +4,7 @@ import { getSheet } from '../../../GAS | Library/v02/gas/getSheet';
 import { getIdFromUrl } from '../../../GAS | Library/v02/gas/getIdFromUrl';
 import { randomInteger } from '../../../GAS | Library/v02/num/randomInteger';
 
-import {
-	EXT_SHEET_URL,
-	EXT_SHEET_NAME,
-	HUB_URL,
-	WHERE_TO_PRINT,
-} from './config';
+import { EXT_SHEET_URL, EXT_SHEET_NAME, HUB_URL } from './config';
 
 /**
  * Zwraca odpowieni arkusz do modyfikacji na podstawie parametru 'geo'

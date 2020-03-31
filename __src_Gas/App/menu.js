@@ -5,8 +5,8 @@ import {
 	createFolderStructure,
 	createFilesForExt,
 	createWhereToPrintFiles,
+	setTitle,
 } from './prepareStructure';
-
 import { startTimeTrigger, cancelTimeTriggers } from './triggers';
 
 // Funkcja do trigerów co minutę
@@ -25,6 +25,7 @@ global.randomHub = () => {
 
 // @ts-ignore
 global.menu = {
+	test: () => setTitle(),
 	createFolderStructure,
 	createFilesForExt,
 	createWhereToPrintFiles,
@@ -52,6 +53,9 @@ const menu = () => {
 		.addItem('Uruchom Trigger dla Random Hub', 'menu.triggers.hub')
 		.addSeparator()
 		.addItem('Zatrzymaj triggery', 'menu.triggers.stop')
+		.addSeparator()
+		.addItem('Test', 'menu.test')
+
 		.addSeparator()
 		// .addItem('createFolderStructure', 'menu.createFolderStructure')
 		// .addItem('createFilesForExt', 'menu.createFilesForExt')
