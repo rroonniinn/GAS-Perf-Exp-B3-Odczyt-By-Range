@@ -8,6 +8,7 @@ import {
 	setTitle,
 } from './prepareStructure';
 import { startTimeTrigger, cancelTimeTriggers } from './triggers';
+import { unifyAll } from './unifyFiles';
 
 // Funkcja do trigerów co minutę
 // @ts-ignore
@@ -25,7 +26,7 @@ global.randomHub = () => {
 
 // @ts-ignore
 global.menu = {
-	test: () => setTitle(),
+	test: () => unifyAll(),
 	createFolderStructure,
 	createFilesForExt,
 	createWhereToPrintFiles,
