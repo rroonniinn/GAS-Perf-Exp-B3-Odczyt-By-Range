@@ -1,40 +1,26 @@
-/* eslint-disable max-lines-per-function */
+import {
+	startMinuteTrigger,
+	cancelTimeTriggers,
+} from '../../../GAS | Library/v01/gas/timeTriggers';
 
 import { randomExternal, randomLocal, randomHub } from './experiments';
-import {
-	createFolderStructure,
-	createFilesForExt,
-	createWhereToPrintFiles,
-	setTitle,
-} from './prepareStructure';
-import { startTimeTrigger, cancelTimeTriggers } from './triggers';
-import { unifyAll } from './unifyFiles';
 
 // Funkcja do trigerów co minutę
 // @ts-ignore
-global.randomExternal = () => {
-	randomExternal();
-};
+global.randomExternal = randomExternal;
 // @ts-ignore
-global.randomLocal = () => {
-	randomLocal();
-};
+global.randomLocal = randomLocal;
 // @ts-ignore
-global.randomHub = () => {
-	randomHub();
-};
+global.randomHub = randomHub;
 
 // @ts-ignore
 global.menu = {
-	test: () => unifyAll(),
-	createFolderStructure,
-	createFilesForExt,
-	createWhereToPrintFiles,
+	test: () => console.log('test'),
 
 	triggers: {
-		ext: () => startTimeTrigger('randomExternal'),
-		loc: () => startTimeTrigger('randomLocal'),
-		hub: () => startTimeTrigger('randomHub'),
+		ext: () => startMinuteTrigger('randomExternal', 1),
+		loc: () => startMinuteTrigger('randomLocal', 1),
+		hub: () => startMinuteTrigger('randomHub', 1),
 		stop: cancelTimeTriggers,
 	},
 };
@@ -42,10 +28,15 @@ global.menu = {
 const menu = () => {
 	const ui = SpreadsheetApp.getUi();
 	ui.createMenu('ICON')
-		// .addItem('Test : randomLocal', 'randomLocal')
-		// .addItem('Test : randomExternal', 'randomExternal')
-		// .addItem('Test : randomHub', 'randomHub')
-		// .addSeparator()
+		.addSubMenu(
+			ui
+				.createMenu('Test funkcji do odpalenia automatycznego')
+				.addItem('Test : randomLocal', 'randomLocal')
+				.addItem('Test : randomExternal', 'randomExternal')
+				.addItem('Test : randomHub', 'randomHub')
+		)
+
+		.addSeparator()
 		.addItem(
 			'Uruchom Trigger dla Random External',
 			'menu.triggers.ext'
@@ -55,14 +46,13 @@ const menu = () => {
 		.addSeparator()
 		.addItem('Zatrzymaj triggery', 'menu.triggers.stop')
 		.addSeparator()
-		.addItem('Test', 'menu.test')
+		.addSubMenu(
+			ui
+				.createMenu('DEV')
+				.addItem('Test', 'menu.test')
+				.addItem('Update menu', 'onOpen')
+		)
 
-		.addSeparator()
-		// .addItem('createFolderStructure', 'menu.createFolderStructure')
-		// .addItem('createFilesForExt', 'menu.createFilesForExt')
-		// .addItem('createWhereToPrintFiles', 'menu.createWhereToPrintFiles')
-		// .addSeparator()
-		.addItem('Update menu', 'onOpen')
 		.addToUi();
 };
 

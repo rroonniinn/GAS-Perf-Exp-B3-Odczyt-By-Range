@@ -1,41 +1,6 @@
-/* eslint-disable max-params */
-
-import { getSheet } from '../../../GAS | Library/v02/gas/getSheet';
-import { getIdFromUrl } from '../../../GAS | Library/v02/gas/getIdFromUrl';
 import { randomInteger } from '../../../GAS | Library/v02/num/randomInteger';
 
-import { EXT_SHEET_URL, EXT_SHEET_NAME, HUB_URL } from './config';
-
-/**
- * Zwraca odpowieni arkusz do modyfikacji na podstawie parametru 'geo'
- * określającego czy ma być to external, local czy hub
- *
- * @param {string} geo Określenie 'ext', 'loc', 'hub'
- * @param {string} sheetCode Zdefiniowany kod zadania np. l100
- * @returns {GoogleAppsScript.Spreadsheet.Sheet} Obiket arkusza
- */
-
-const getProperSheet = (geo, sheetCode) => {
-	if (geo === 'ext') {
-		return getSheet(
-			EXT_SHEET_NAME,
-			getIdFromUrl(EXT_SHEET_URL[sheetCode])
-		);
-	}
-	if (geo === 'loc') {
-		return getSheet(sheetCode);
-	}
-	if (geo === 'hub') {
-		return getSheet(sheetCode, getIdFromUrl(HUB_URL));
-	}
-};
-
-/**
- * Helper
- * Pobiera numer ze stringa
- * @param {string} str Zdefiniowany kod zadania np. l100
- */
-const getNumbFromStr = str => Number(/[0-9]+/.exec(str)[0]);
+import { getProperSheet, getNumbFromStr } from './helpers';
 
 /**
  * Pobiera losowy zakres zawierający wskazaną liczbę wpisów wierszy

@@ -46,7 +46,6 @@ const randomFnHub = [
 const runRandom = geoSet => () => {
 	const [code] = randomFromArray(randomCode, 1);
 	const [fn] = randomFromArray(geoSet, 1);
-	// console.log(`Arkusz: ${code} | Liczba modyfikacji: ${fn[0]}`);
 
 	single(code, fn);
 };

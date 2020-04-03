@@ -89,7 +89,7 @@ const LONG_DESC = {
 /**
  * @typedef {Object} PRINT_DEST
  * @property {Object<string, string>} geo URLe plików do których wkleić dane z czasami egzekucji
- * @property {Object<string, string>} entries Kody arkuszy do których wkleić dane z czasami
+ * @property {Object<string, string>} sheets Kody arkuszy do których wkleić dane z czasami
  */
 /**
  * @type {PRINT_DEST} obj
@@ -104,7 +104,7 @@ const WHERE_TO_PRINT = {
 		ext:
 			'https://docs.google.com/a/iconaris.com/spreadsheets/d/1kW9g13lpUbQiQZ332syHChAqumrUbddu_Wn0gOhO2ZU',
 	},
-	entries: {
+	sheets: {
 		e1: 'T: 1',
 		e5: 'T: 5',
 		e10: 'T: 10',
