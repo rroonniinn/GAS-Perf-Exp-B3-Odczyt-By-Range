@@ -4,20 +4,20 @@
 /* eslint-disable max-params */
 
 /**
- * @typedef {import('../../GAS | Library/v02/experiments/types').ExpSheet} ExpSheet
- * @typedef {import('../../GAS | Library/v02/experiments/types').ExpTasks} ExpTasks
- * @typedef {import('../../GAS | Library/v02/gas/styleSheet').RangeOptions} RangeOptions
+ * @typedef {import('./../../../../00. My Library/v02/experiments/types').ExpSheet} ExpSheet
+ * @typedef {import('./../../../../00. My Library/v02/experiments/types').ExpTasks} ExpTasks
+ * @typedef {import('./../../../../00. My Library/v02/gas/styleSheet').RangeOptions} RangeOptions
  */
 
-import { setMenu } from '../../GAS | Library/v02/gas/setMenu';
-import { getProperSheet } from '../../GAS | Library/v02/experiments/getProperSheet';
-import { runRandom } from '../../GAS | Library/v02/experiments/runRandom';
-import { buildStructure } from '../../GAS | Library/v02/experiments/buildStructure';
-import { randomInteger } from '../../GAS | Library/v02/num/randomInteger';
+import { setMenu } from '../../../../00. My Library/v02/gas/setMenu';
+import { getProperSheet } from '../../../../00. My Library/v02/experiments/getProperSheet';
+import { runRandom } from '../../../../00. My Library/v02/experiments/runRandom';
+import { buildStructure } from '../../../../00. My Library/v02/experiments/buildStructure';
+import { randomInteger } from '../../../../00. My Library/v02/num/randomInteger';
 import {
 	setEveryMin,
 	stopTimeTriggers,
-} from '../../GAS | Library/v01/gas/timeTriggers';
+} from '../../../../00. My Library/v01/gas/timeTriggers';
 
 import { EXP_SETUP } from './config';
 

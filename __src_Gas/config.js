@@ -9,7 +9,7 @@ const colors = {
 
 /**
  * Ustawienie całego eksperymentu
- * @type {import('../../GAS | Library/v02/experiments/types').ExpSetup} EXP_SETUP
+ * @type {import('./../../../../00. My Library/v02/experiments/types').ExpSetup} EXP_SETUP
  */
 
 const EXP_SETUP = {
